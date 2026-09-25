@@ -3,8 +3,11 @@
    а собирается в текст, который человек отправляет в Telegram сам. */
 
 const CONFIG = {
-  // Реле анкеты (POST JSON). Пусто — демо-режим.
+  // Реле анкеты (POST JSON). Пусто — смотрим telegramBot, потом демо-режим.
   formEndpoint: '',
+  // Временный прямой режим без реле: сайт сам шлёт анкету через Bot API.
+  // Токен виден в исходнике страницы, поэтому только на время, пока реле не встало.
+  telegramBot: { token: '8717084919:AAHnwcqgO3PRsyHZfO5bm7646Jv89VJhNgg', chatId: '7017655811' },
   // Куда ведут кнопки «Открыть Telegram» и ссылка в подвале.
   telegram: 'https://t.me/marchvlv',
   instagram: '',
@@ -188,7 +191,8 @@ const CONFIG = {
     /* Скрытое поле заполняют только боты: делаем вид, что отправили. */
     if (data.website) { finish('sent', text); return; }
 
-    if (!CONFIG.formEndpoint) {
+    const direct = CONFIG.telegramBot && CONFIG.telegramBot.token && CONFIG.telegramBot.chatId;
+    if (!CONFIG.formEndpoint && !direct) {
       track('anketa_demo');
       finish('demo', text);
       return;
@@ -197,11 +201,20 @@ const CONFIG = {
     submitBtn.disabled = true;
     submitBtn.textContent = 'Отправляем…';
     try {
-      const res = await fetch(CONFIG.formEndpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ ...data, _subject: 'Анкета ReShape', text }),
-      });
+      let res;
+      if (CONFIG.formEndpoint) {
+        res = await fetch(CONFIG.formEndpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({ ...data, _subject: 'Анкета ReShape', text }),
+        });
+      } else {
+        /* Простой запрос без preflight: form-urlencoded. */
+        res = await fetch(`https://api.telegram.org/bot${CONFIG.telegramBot.token}/sendMessage`, {
+          method: 'POST',
+          body: new URLSearchParams({ chat_id: CONFIG.telegramBot.chatId, text: text.slice(0, 4000), disable_web_page_preview: 'true' }),
+        });
+      }
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       track('anketa_sent');
       finish('sent', text);
