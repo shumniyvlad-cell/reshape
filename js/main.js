@@ -84,11 +84,14 @@ const CONFIG = {
   function validate() {
     const bad = $$('[required]', form).find((el) => {
       if (el.type === 'radio') return !form.querySelector(`[name="${el.name}"]:checked`);
+      if (el.type === 'checkbox') return !el.checked;
       return !el.value.trim();
     });
     if (bad) {
-      showError('Заполни все поля, кроме «что пробовал». Без них я не смогу ответить по делу.');
-      (bad.type === 'radio' ? bad : bad).focus();
+      showError(bad.type === 'checkbox'
+        ? 'Без согласия с офертой анкету не отправить: это нужно по закону.'
+        : 'Заполни все поля, кроме «что пробовал». Без них я не смогу ответить по делу.');
+      bad.focus();
       return false;
     }
     hideError();
@@ -138,6 +141,9 @@ const CONFIG = {
     if (!validate()) return;
     const data = collect();
     const text = toText(data);
+
+    /* Скрытое поле заполняют только боты: делаем вид, что отправили. */
+    if (data.website) { finish('sent', text); return; }
 
     if (!CONFIG.formEndpoint) {
       track('anketa_demo');

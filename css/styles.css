@@ -252,6 +252,26 @@ button{font:inherit;color:inherit}
 .form__error.is-visible{display:block}
 .form.is-sent form{display:none}
 
+.field--consent{margin-top:-6px}
+.check{display:flex;gap:12px;align-items:flex-start;cursor:pointer;font-weight:400}
+.check input{flex:none;width:22px;height:22px;margin:2px 0 0;accent-color:var(--accent);cursor:pointer}
+.check a{color:var(--ink);text-decoration-thickness:2px}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+
+/* Документы: оферта */
+.doc{max-width:72ch;padding:clamp(40px, 6vw, 80px) var(--gutter) clamp(64px, 8vw, 120px)}
+.doc h1{font-size:var(--step-3);font-weight:800;letter-spacing:-.03em;line-height:1.02;margin-bottom:12px}
+.doc__meta{color:var(--ink-2);margin-bottom:40px;max-width:60ch}
+.doc h2{font-size:var(--step-1);font-weight:700;line-height:1.2;margin:44px 0 12px}
+.doc p{margin:0 0 12px}
+.doc ol,.doc ul{margin:0 0 12px;padding-left:24px;list-style:decimal}
+.doc ul{list-style:disc}
+.doc li{margin-bottom:8px}
+.doc .req{border-top:2px solid var(--ink);padding-top:16px;margin-top:40px}
+.doc .req dt{font-weight:700}
+.doc .req dd{margin:0 0 12px;color:var(--ink-2)}
+.ph{background:#FFE98A;padding:0 4px}
+
 /* Подвал */
 .footer{border-top:2px solid var(--ink);padding:40px 0 48px;color:var(--ink-2);font-size:var(--step--1)}
 .footer__in{display:grid;grid-template-columns:1fr;gap:20px 48px}

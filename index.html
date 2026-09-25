@@ -17,7 +17,7 @@
 <link rel="preload" href="fonts/golos-text-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/piazzolla-italic-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="fonts/fonts.css">
-<link rel="stylesheet" href="css/styles.css?v=2">
+<link rel="stylesheet" href="css/styles.css?v=3">
 <script>
 (function(){try{var p=new URLSearchParams(location.search);if(p.has('motion'))localStorage.setItem('reshape-motion',p.get('motion'));var f=localStorage.getItem('reshape-motion');var r=f==='1'?false:f==='0'?true:matchMedia('(prefers-reduced-motion: reduce)').matches;document.documentElement.className+=r?' no-motion':' motion';}catch(e){document.documentElement.className+=' motion'}})();
 </script>
@@ -362,10 +362,17 @@
             <input type="text" id="fTg" name="telegram" required placeholder="@username" autocomplete="off">
             <p class="hint">Отвечу туда. Больше никуда ничего не пишу и не рассылаю.</p>
           </div>
+          <div class="field field--consent">
+            <label class="check">
+              <input type="checkbox" name="consent" value="да" required>
+              <span>Принимаю <a href="oferta.html" target="_blank" rel="noopener">условия оферты</a> и даю согласие на обработку персональных данных</span>
+            </label>
+          </div>
+          <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
           <input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign"><input type="hidden" name="utm_content"><input type="hidden" name="referrer"><input type="hidden" name="page">
           <div class="form__actions">
             <button class="btn btn--accent" type="submit" id="submitBtn">Отправить анкету</button>
-            <p class="small muted">Отправляя анкету, ты соглашаешься, что я прочитаю её и отвечу в Telegram. Это всё.</p>
+            <p class="small muted">Анкета приходит мне в Telegram. Читаю сам, отвечаю в течение суток.</p>
           </div>
           <p class="form__error" id="formError" role="alert"></p>
         </form>
@@ -388,6 +395,7 @@
       <p style="margin-top:12px">© <span id="year">2026</span> Влад Шума</p>
     </div>
     <div class="footer__links" id="footerLinks">
+      <a href="oferta.html">Оферта и персональные данные</a>
       <a data-link="telegram" href="#" target="_blank" rel="noopener">Telegram</a>
       <a data-link="instagram" href="#" target="_blank" rel="noopener">Instagram</a>
       <a data-link="youtube" href="#" target="_blank" rel="noopener">YouTube</a>
