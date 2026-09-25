@@ -18,44 +18,42 @@ const CONFIG = {
   const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
   const motion = document.documentElement.classList.contains('motion');
 
-  /* ---------- Заголовок-афиша: каждая строка растягивается на всю ширину ---------- */
-  const slam = $('#slam');
-  function buildLines() {
-    if (!slam) return;
-    const mobile = slam.clientWidth < 620;
-    const src = mobile ? slam.dataset.linesMobile : slam.dataset.linesDesktop;
+  /* ---------- Заголовки-афиши: каждая строка растягивается на ширину контейнера ---------- */
+  function buildLines(el) {
+    if (!el.dataset.linesDesktop) return;
+    const mobile = el.clientWidth < 620;
+    const src = mobile ? (el.dataset.linesMobile || el.dataset.linesDesktop) : el.dataset.linesDesktop;
     const key = mobile ? 'm' : 'd';
-    if (slam.dataset.built === key) return;
-    const yellowFrom = slam.dataset.yellowFrom;
+    if (el.dataset.built === key) return;
+    const yellowFrom = el.dataset.yellowFrom;
     let yellow = false;
-    slam.innerHTML = src.split('|').map((t) => {
-      if (t.startsWith(yellowFrom)) yellow = true;
+    el.innerHTML = src.split('|').map((t) => {
+      if (yellowFrom && t.startsWith(yellowFrom)) yellow = true;
       return `<span class="ln${yellow ? ' ln--y' : ''}"><span class="w">${t}</span></span>`;
     }).join('');
-    slam.dataset.built = key;
+    el.dataset.built = key;
   }
-  function fitLines() {
-    if (!slam) return;
-    buildLines();
-    const width = slam.clientWidth;
-    $$('.ln', slam).forEach((ln) => {
+  function fitEl(el) {
+    const max = parseFloat(el.dataset.fit) || 260;
+    const width = el.clientWidth;
+    $$('.ln', el).forEach((ln) => {
       const w = $('.w', ln);
       ln.style.fontSize = '100px';
       const measured = w.getBoundingClientRect().width;
       if (!measured) return;
-      const size = Math.min((width / measured) * 100, 260);
-      ln.style.fontSize = size.toFixed(2) + 'px';
+      ln.style.fontSize = Math.min((width / measured) * 100, max).toFixed(2) + 'px';
     });
   }
-  if (slam) {
-    fitLines();
-    if (document.fonts) {
-      document.fonts.load('900 100px "Unbounded"').then(fitLines, fitLines);
-      document.fonts.addEventListener('loadingdone', fitLines);
-    }
-    let t;
-    window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(fitLines, 80); });
+  function fitAll() {
+    $$('[data-fit]').forEach((el) => { buildLines(el); fitEl(el); });
   }
+  fitAll();
+  if (document.fonts) {
+    document.fonts.load('900 100px "Unbounded"').then(fitAll, fitAll);
+    document.fonts.addEventListener('loadingdone', fitAll);
+  }
+  let resizeTimer;
+  window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(fitAll, 80); });
 
   /* ---------- Бегущие ленты: дублируем дорожку для бесшовной петли ---------- */
   $$('.track').forEach((track) => {

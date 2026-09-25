@@ -18,7 +18,7 @@
 <link rel="preload" href="fonts/plex-400-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/jbmono-700-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="fonts/fonts.css?v=4">
-<link rel="stylesheet" href="css/styles.css?v=4">
+<link rel="stylesheet" href="css/styles.css?v=5">
 <script>
 (function(){try{var p=new URLSearchParams(location.search);if(p.has('motion'))localStorage.setItem('reshape-motion',p.get('motion'));var f=localStorage.getItem('reshape-motion');var r=f==='1'?false:f==='0'?true:matchMedia('(prefers-reduced-motion: reduce)').matches;document.documentElement.className+=r?' no-motion':' motion';}catch(e){document.documentElement.className+=' motion'}})();
 </script>
@@ -34,7 +34,7 @@
       <span>ReShape</span>
     </a>
     <nav class="hd__nav" aria-label="Разделы">
-      <a href="#situations">Ситуации</a>
+      <a href="#situations">Сценарии</a>
       <a href="#how">Как проходит</a>
       <a href="#map">Документ</a>
       <a href="#author">Автор</a>
@@ -57,14 +57,14 @@
       <span class="tag">8 мест</span>
       <span class="tag">14 дней</span>
     </div>
-    <h1 class="slamwall" id="slam" data-lines-desktop="ТЫ СНОВА|ПРИНИМАЕШЬ|НОВОЕ РЕШЕНИЕ|ИЗ СТАРОЙ ТОЧКИ." data-lines-mobile="ТЫ СНОВА|ПРИНИМАЕШЬ|НОВОЕ|РЕШЕНИЕ|ИЗ СТАРОЙ|ТОЧКИ." data-yellow-from="ИЗ СТАРОЙ">
+    <h1 class="slamwall" id="slam" data-fit="260" data-lines-desktop="ТЫ СНОВА|ПРИНИМАЕШЬ|НОВОЕ РЕШЕНИЕ|ИЗ СТАРОЙ ТОЧКИ." data-lines-mobile="ТЫ СНОВА|ПРИНИМАЕШЬ|НОВОЕ|РЕШЕНИЕ|ИЗ СТАРОЙ|ТОЧКИ." data-yellow-from="ИЗ СТАРОЙ">
       <span class="ln"><span class="w">Ты снова</span></span>
       <span class="ln"><span class="w">принимаешь</span></span>
       <span class="ln"><span class="w">новое решение</span></span>
       <span class="ln ln--y"><span class="w">из старой точки.</span></span>
     </h1>
     <div class="hero__row">
-      <p class="hero__lead">Ты уже зарабатываешь. И раз за разом берёшь лишнее, откладываешь своё, не отпускаешь руль или снова меняешь направление. За две недели разбираем один такой сценарий до конфликта и делаем один эксперимент, где ты действуешь иначе.</p>
+      <p class="hero__lead">Ты зарабатываешь, но раз за разом повторяешь один и тот же сценарий. За две недели разберём его до конфликта и проведём один эксперимент, где ты действуешь иначе.</p>
       <div class="hero__cta">
         <a class="btn btn--lg" href="#apply">Занять место</a>
         <a class="btn btn--lg btn--ghost" href="#how">Как проходит</a>
@@ -80,33 +80,31 @@
 <section class="sec sec--light" id="situations">
   <div class="wrap">
     <div class="sec__head">
-      <div>
-        <p class="kicker">Четыре сценария</p>
-        <h2 class="slam rv">Узнай свою</h2>
-      </div>
-      <p class="sub">Формулировки условные. Ситуации нет. Если одна из них твоя, ты знаешь этот момент наизусть.</p>
+      <p class="kicker">Четыре сценария</p>
+      <h2 class="slam rv" data-fit="150"><span class="ln"><span class="w">Знакомо?</span></span></h2>
+      <p class="sub">Если один из них твой, ты знаешь этот момент наизусть.</p>
     </div>
     <div class="sit">
       <article class="sit__card rv">
         <div class="sit__stamp">Лишнее</div>
-        <p class="sit__q">Закрыл проект хорошо. И тут же взял ещё два. Через месяц снова ни на что нет времени, и я снова злюсь на всех вокруг.</p>
+        <p class="sit__q">Закрыл проект и тут же взял ещё два.</p>
       </article>
       <article class="sit__card rv">
         <div class="sit__stamp">Своё</div>
-        <p class="sit__q">Свой продукт лежит в заметках третий год. На клиентов работаю по двенадцать часов, а к своему «пока не готов».</p>
+        <p class="sit__q">Свой продукт третий год лежит в заметках.</p>
       </article>
       <article class="sit__card rv">
         <div class="sit__stamp">Руль</div>
-        <p class="sit__q">Нанял человека, чтобы разгрузиться. Через две недели снова делаю всё сам, потому что «быстрее самому».</p>
+        <p class="sit__q">Нанял человека. Через две недели снова всё сам.</p>
       </article>
       <article class="sit__card rv">
         <div class="sit__stamp">Курс</div>
-        <p class="sit__q">Каждые полгода выбираю новое направление. Ровно в момент, когда надо просто продолжать, приходит идея получше.</p>
+        <p class="sit__q">Каждые полгода новое направление.</p>
       </article>
     </div>
     <div class="sit__after">
-      <p>Общее у этих историй одно: решение каждый раз новое, а результат старый.</p>
-      <h3 class="slam slam--m rv">Значит, дело не в решении.</h3>
+      <p>Решение каждый раз новое. Результат старый.</p>
+      <h3 class="slam rv" data-fit="120" data-lines-desktop="ДЕЛО НЕ В РЕШЕНИИ." data-lines-mobile="ДЕЛО НЕ|В РЕШЕНИИ."><span class="ln"><span class="w">Дело не в решении.</span></span></h3>
     </div>
   </div>
 </section>
@@ -114,94 +112,89 @@
 <section class="sec" id="how">
   <div class="wrap">
     <div class="sec__head">
-      <div>
-        <p class="kicker">Протокол</p>
-        <h2 class="slam rv">Как проходит</h2>
-      </div>
-      <p class="sub">Пять шагов, один протокол для всех восьми. Каждый шаг заканчивается тем, что можно записать и проверить.</p>
+      <p class="kicker">Протокол</p>
+      <h2 class="slam rv" data-fit="150" data-lines-desktop="КАК ПРОХОДИТ" data-lines-mobile="КАК|ПРОХОДИТ"><span class="ln"><span class="w">Как проходит</span></span></h2>
+      <p class="sub">Пять шагов. Каждый заканчивается тем, что можно проверить.</p>
     </div>
     <ol class="steps">
       <li class="step">
         <div class="step__day">День 0</div>
         <div>
           <h3>Анкета</h3>
-          <p>Шесть вопросов, пятнадцать минут. Ты описываешь сценарий и последний раз, когда он случился. Я отвечаю в течение суток: <strong>подходит формат или нет</strong>. Если нет, скажу прямо и денег не возьму.</p>
+          <p>Шесть вопросов. Отвечаю в течение суток: подходит формат или нет.</p>
         </div>
       </li>
       <li class="step">
         <div class="step__day">День 1</div>
         <div>
           <h3>Сессия 90 минут</h3>
-          <p>Видеосвязь, один на один. Ситуация, эмоция, конфликт, перестройка, проверка. Ищем не «почему ты такой», а <strong>какие два правила одновременно управляют выбором</strong>. Выходим с одним экспериментом.</p>
+          <p>Находим два правила, которые управляют твоим выбором. Выходим с одним экспериментом.</p>
         </div>
       </li>
       <li class="step">
         <div class="step__day">День 2</div>
         <div>
           <h3>Карта сценария</h3>
-          <p>В течение суток присылаю документ: сценарий твоими словами, триггер, гипотеза конфликта, план эксперимента и <strong>критерий, по которому мы поймём, что поведение изменилось</strong>.</p>
+          <p>Документ на страницу: триггер, конфликт, план эксперимента, критерий.</p>
         </div>
       </li>
       <li class="step">
         <div class="step__day">Дни 3–16</div>
         <div>
           <h3>Эксперимент</h3>
-          <p>Одно конкретное действие в реальной работе. Дневник: три строки в день. Я на связи в Telegram по делу, без «как настроение».</p>
+          <p>Одно действие в реальной работе. Дневник в три строки. Я на связи.</p>
         </div>
       </li>
       <li class="step">
         <div class="step__day">День 17</div>
         <div>
-          <h3>Контрольный созвон</h3>
-          <p>30 минут. Смотрим, что изменилось в поведении, а не в ощущениях. Решение: <strong>закрепить, поменять или закрыть гипотезу</strong>. Это и есть результат разбора.</p>
+          <h3>Контроль</h3>
+          <p>Что изменилось в поведении. Закрепить, поменять или закрыть гипотезу.</p>
         </div>
       </li>
     </ol>
-    <p class="steps__note">Онлайн, на русском. Запись сессии остаётся у тебя. Содержание разговора не публикуется.</p>
   </div>
 </section>
 
 <section class="sec" id="map">
   <div class="wrap">
     <div class="sec__head">
-      <div>
-        <p class="kicker">Что получишь на руки</p>
-        <h2 class="slam rv">Не инсайт. Документ.</h2>
-      </div>
+      <p class="kicker">Что получишь на руки</p>
+      <h2 class="slam rv" data-fit="150"><span class="ln"><span class="w">Не инсайт.</span></span><span class="ln ln--y"><span class="w">Документ.</span></span></h2>
     </div>
     <div class="map-grid">
       <ul class="give">
         <li>Карта сценария в PDF</li>
-        <li>План эксперимента с критерием</li>
-        <li>Шаблон дневника на 14 дней</li>
-        <li>Контрольный созвон и решение</li>
+        <li>План эксперимента</li>
+        <li>Дневник на 14 дней</li>
+        <li>Контрольный созвон</li>
       </ul>
       <figure class="pass rv" aria-label="Пример карты сценария">
         <div class="pass__head">
           <b>Карта сценария</b>
-          <span>Образец. Без персональных данных</span>
+          <span>Образец</span>
         </div>
         <div class="pass__row">
           <div class="pass__k"><b>1</b>Ситуация</div>
-          <p class="pass__v">«После каждого удачного проекта беру два новых, не считая нагрузку. Через три-четыре недели срываю сроки по всем сразу». Третий раз за год.</p>
+          <p class="pass__v">«После удачного проекта беру два новых. Третий раз за год».</p>
         </div>
         <div class="pass__row">
           <div class="pass__k"><b>2</b>Эмоция</div>
-          <p class="pass__v">Перед «да»: подъём и лёгкая паника «сейчас или никогда». После: раздражение на команду и на себя.</p>
+          <p class="pass__v">Подъём и паника «сейчас или никогда».</p>
         </div>
         <div class="pass__row">
           <div class="pass__k"><b>3</b>Конфликт</div>
-          <p class="pass__v">Правило А: «Я тот, кто не отказывает и всё вывозит». Правило Б: «Я хочу делать своё, а не чужое». Каждое новое «да» кормит А и откладывает Б.</p>
+          <p class="pass__v">«Я всё вывожу» против «я хочу делать своё».</p>
         </div>
         <div class="pass__row">
           <div class="pass__k"><b>4</b>Перестройка</div>
-          <p class="pass__v">Эксперимент на 14 дней: любой новый запрос получает ответ не раньше чем через сутки и только после сверки с календарём нагрузки. Формулировка отказа написана заранее.</p>
+          <p class="pass__v">14 дней: любой новый запрос ждёт сутки и сверяется с календарём.</p>
         </div>
         <div class="pass__row">
           <div class="pass__k"><b>5</b>Проверка</div>
-          <p class="pass__v">Считаем два числа: сколько новых обязательств взято за 14 дней и сколько раз сработала пауза. Дневник: три строки в день. Контроль: день 17.</p>
+          <p class="pass__v">Считаем, сколько раз сработала пауза. Контроль на день 17.</p>
         </div>
-        <figcaption class="pass__foot">Карта не диагноз и не приговор. Рабочая гипотеза, которую проверяем действием.</figcaption>
+        <figcaption class="pass__foot">Не диагноз. Гипотеза, которую проверяем действием.</figcaption>
       </figure>
     </div>
   </div>
@@ -210,22 +203,12 @@
 <section class="sec sec--light" id="author">
   <div class="wrap">
     <div class="sec__head">
-      <div>
-        <p class="kicker">Автор и ведущий</p>
-        <h2 class="slam rv">Влад Шума</h2>
-      </div>
-      <p class="sub">Медиапродюсер и шоураннер. Восемь лет собираю рамки для людей и проектов. ReShape та же работа, только с тобой.</p>
+      <p class="kicker">Автор и ведущий</p>
+      <h2 class="slam rv" data-fit="150" data-lines-desktop="ВЛАД МАРЧЕНКОВ" data-lines-mobile="ВЛАД|МАРЧЕНКОВ"><span class="ln"><span class="w">Влад Марченков</span></span></h2>
+      <p class="sub">Медиапродюсер и шоураннер. Автор форматов «По Факту», «Бэкстейдж» и канала «Запиши это в заметки». Восемь лет собираю рамки для людей и проектов. ReShape та же работа, только с тобой.</p>
     </div>
-    <div class="auth">
-      <div>
-        <p style="color:#222">Подкасты, шоу, короткие видео, брендовые концепции и запуски для экспертов и личных брендов. Автор форматов «По Факту» и «Бэкстейдж» и Telegram-канала «Запиши это в заметки».</p>
-        <p style="color:#222">Моя работа как продюсера всегда была одной и той же: быстро находить рамку, в которой человек или проект начинает складываться. Человек тоже конфигурация: привычки, эмоции, правила. Она даёт один и тот же результат, пока её не пересобрать.</p>
-        <p style="color:#222">Меня не интересует эстетика «новой жизни». Меня интересует механизм, из-за которого ты снова выбираешь то же самое.</p>
-      </div>
-      <div class="hon">
-        <p style="color:#000"><strong>Честно про границы.</strong> Медийный опыт доказывает, что я умею находить рамку и превращать её в формат. Он не доказывает эффективность ReShape. Её доказывает пилот.</p>
-        <p style="color:#000;margin-top:1em">Первые восемь разборов идут по одному протоколу с фиксацией точки А и наблюдаемого шага после эксперимента. Кейсы появятся здесь только с письменного согласия участников и с честными ограничениями результата.</p>
-      </div>
+    <div class="hon">
+      <p>Медийный опыт не доказывает метод. Его доказывает пилот: восемь разборов по одному протоколу, кейсы только с согласия участников.</p>
     </div>
   </div>
 </section>
@@ -233,26 +216,7 @@
 <section class="sec" id="proof">
   <div class="wrap">
     <h2 class="zero rv"><b>0</b> кейсов.<br><b>1</b> протокол.<br><b>8</b> мест.</h2>
-    <div class="two">
-      <div>
-        <h3>Что есть уже сегодня</h3>
-        <ul class="lst">
-          <li>Протокол из пяти шагов, одинаковый для всех участников</li>
-          <li>Точка А до сессии и наблюдаемый шаг после эксперимента, словами участника</li>
-          <li>Одно обещание: разобрать сценарий, увидеть триггер, провести проверяемый эксперимент</li>
-          <li>Публикация кейсов только с письменного согласия</li>
-        </ul>
-      </div>
-      <div>
-        <h3>Чего не обещаю</h3>
-        <ul class="lst lst--x">
-          <li>Рост дохода</li>
-          <li>Восстановление отношений</li>
-          <li>Лечение состояний</li>
-          <li>Новую личность за две недели</li>
-        </ul>
-      </div>
-    </div>
+    <p class="sub">Не обещаю доход, отношения, лечение и новую личность за две недели. Обещаю разобрать один сценарий, найти триггер и провести эксперимент, который можно проверить.</p>
   </div>
 </section>
 
@@ -261,11 +225,9 @@
 <section class="sec sec--light" id="terms">
   <div class="wrap">
     <div class="sec__head">
-      <div>
-        <p class="kicker">Условия пилота</p>
-        <h2 class="slam rv">Восемь мест</h2>
-      </div>
-      <p class="sub">По цене пилота. После пилота формат и цена изменятся.</p>
+      <p class="kicker">Условия пилота</p>
+      <h2 class="slam rv" data-fit="150" data-lines-desktop="ВОСЕМЬ МЕСТ" data-lines-mobile="ВОСЕМЬ|МЕСТ"><span class="ln"><span class="w">Восемь мест</span></span></h2>
+      <p class="sub">По цене пилота. Потом дороже.</p>
     </div>
     <div class="price">
       <div>
@@ -275,41 +237,27 @@
       <ul class="inc">
         <li>Анкета и отбор</li>
         <li>Сессия 90 минут</li>
-        <li>Карта сценария и план эксперимента</li>
+        <li>Карта сценария</li>
         <li>14 дней связи по делу</li>
-        <li>Контрольный созвон 30 минут</li>
+        <li>Контрольный созвон</li>
       </ul>
     </div>
     <dl class="terms">
       <div>
         <dt>Запись</dt>
-        <dd>Анкета ниже, ответ в течение суток. Оплата только после того, как я подтвердил, что формат тебе подходит. Потом выбираем время.</dd>
+        <dd>Анкета, ответ за сутки, оплата только после подтверждения.</dd>
       </div>
       <div>
         <dt>Перенос</dt>
-        <dd>Один перенос сессии без потери оплаты, если предупредить за сутки. Второй перенос обсуждаем отдельно.</dd>
+        <dd>Один бесплатно, если предупредить за сутки.</dd>
       </div>
       <div>
-        <dt>Конфиденциальность</dt>
-        <dd>Содержание сессии и карты не публикуется и не пересказывается. Кейс выходит только с твоего письменного согласия.</dd>
+        <dt>Не терапия</dt>
+        <dd>Если запрос за пределами метода, скажу и направлю к специалисту.</dd>
       </div>
       <div>
-        <dt>Что это не</dt>
-        <dd>Не психотерапия и не медицинская помощь. Если запрос за пределами метода, я скажу об этом и направлю к профильному специалисту.</dd>
-      </div>
-      <div>
-        <dt>Кому не подходит</dt>
-        <dd>
-          <ul>
-            <li>если нужно, чтобы «стало легче» без задания и дневника</li>
-            <li>если хочешь разобрать сценарий партнёра или сотрудника, а не свой</li>
-            <li>если сейчас нужна помощь врача или психотерапевта</li>
-          </ul>
-        </dd>
-      </div>
-      <div>
-        <dt>Кому подходит</dt>
-        <dd>Ты предприниматель, автор или эксперт, у тебя есть повторяющийся сценарий с ценой, и ты готов две недели делать одно конкретное действие по-новому.</dd>
+        <dt>Не подходит</dt>
+        <dd>Если нужно «чтобы стало легче» без задания, если сценарий чужой, если сейчас нужен врач.</dd>
       </div>
     </dl>
   </div>
@@ -318,24 +266,22 @@
 <section class="sec" id="apply">
   <div class="wrap">
     <div class="sec__head">
-      <div>
-        <p class="kicker">Последний шаг</p>
-        <h2 class="slam rv">Анкета</h2>
-      </div>
-      <p class="sub">Шесть вопросов. Пиши как есть, без подготовки. Отвечу в течение суток в Telegram.</p>
+      <p class="kicker">Последний шаг</p>
+      <h2 class="slam rv" data-fit="150"><span class="ln"><span class="w">Анкета</span></span></h2>
+      <p class="sub">Шесть вопросов. Отвечу за сутки в Telegram.</p>
     </div>
     <div class="form" id="applyBlock">
       <form id="applyForm" novalidate>
         <div class="f">
-          <label class="f__l" for="fName">Как к тебе обращаться и чем ты занимаешься</label>
-          <input type="text" id="fName" name="name" autocomplete="name" required placeholder="Аня, основатель студии дизайна">
+          <label class="f__l" for="fName">Как к тебе обращаться и чем занимаешься</label>
+          <input type="text" id="fName" name="name" autocomplete="name" required placeholder="Аня, основатель студии">
         </div>
         <div class="f">
           <label class="f__l" for="fScenario">Какой сценарий повторяется</label>
-          <textarea id="fScenario" name="scenario" required placeholder="Опиши последний раз, когда это случилось: что происходило, что ты сделал и чем закончилось"></textarea>
+          <textarea id="fScenario" name="scenario" required placeholder="Последний раз, когда это случилось"></textarea>
         </div>
         <div class="f">
-          <span class="f__l" id="lTimes">Сколько раз за последний год</span>
+          <span class="f__l" id="lTimes">Сколько раз за год</span>
           <div class="chips" role="radiogroup" aria-labelledby="lTimes">
             <label class="chip"><input type="radio" name="times" value="1 раз" required><span>Один</span></label>
             <label class="chip"><input type="radio" name="times" value="2–3 раза"><span>Два-три</span></label>
@@ -345,14 +291,14 @@
         </div>
         <div class="f">
           <label class="f__l" for="fCost">Во что это обходится</label>
-          <textarea id="fCost" name="cost" required placeholder="Деньги, время, отношения, отложенный запуск. Чем конкретнее, тем лучше"></textarea>
+          <textarea id="fCost" name="cost" required placeholder="Деньги, время, отношения, отложенный запуск"></textarea>
         </div>
         <div class="f">
-          <label class="f__l" for="fTried">Что уже пробовал и почему не сработало</label>
-          <textarea id="fTried" name="tried" placeholder="Курсы, коуч, терапия, «просто взять себя в руки»"></textarea>
+          <label class="f__l" for="fTried">Что уже пробовал</label>
+          <textarea id="fTried" name="tried" placeholder="Курсы, коуч, терапия, «взять себя в руки»"></textarea>
         </div>
         <div class="f">
-          <span class="f__l" id="lReady">Готовность две недели выполнять одно задание и вести короткий дневник</span>
+          <span class="f__l" id="lReady">Готов две недели делать одно задание и вести дневник</span>
           <div class="chips" role="radiogroup" aria-labelledby="lReady">
             <label class="chip"><input type="radio" name="ready" value="да" required><span>Да</span></label>
             <label class="chip"><input type="radio" name="ready" value="не уверен"><span>Не уверен</span></label>
@@ -361,19 +307,18 @@
         <div class="f">
           <label class="f__l" for="fTg">Твой Telegram</label>
           <input type="text" id="fTg" name="telegram" required placeholder="@username" autocomplete="off">
-          <p class="hint">Отвечу туда. Больше никуда ничего не пишу и не рассылаю.</p>
         </div>
         <div class="f">
           <label class="check">
             <input type="checkbox" name="consent" value="да" required>
-            <span>Принимаю <a href="oferta.html" target="_blank" rel="noopener">условия оферты</a> и даю согласие на обработку персональных данных</span>
+            <span>Принимаю <a href="oferta.html" target="_blank" rel="noopener">условия оферты</a> и даю согласие на обработку данных</span>
           </label>
         </div>
         <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
         <input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign"><input type="hidden" name="utm_content"><input type="hidden" name="referrer"><input type="hidden" name="page">
         <div class="form__actions">
           <button class="btn btn--lg" type="submit" id="submitBtn">Отправить анкету</button>
-          <p class="small">Анкета приходит мне в Telegram. Читаю сам, отвечаю в течение суток.</p>
+          <p class="small">Читаю сам, отвечаю за сутки.</p>
         </div>
         <p class="form__err" id="formError" role="alert"></p>
       </form>
@@ -391,8 +336,8 @@
 <footer class="ft">
   <div class="wrap ft__in">
     <div class="ft__legal">
-      <p>ReShape: авторская образовательная и практическая работа с решениями и поведением. Не заменяет психотерапию и медицинскую помощь.</p>
-      <p>© <span id="year">2026</span> Влад Шума</p>
+      <p>ReShape не заменяет психотерапию и медицинскую помощь.</p>
+      <p>© <span id="year">2026</span> Влад Марченков</p>
     </div>
     <div class="ft__links" id="footerLinks">
       <a href="oferta.html">Оферта и данные</a>
@@ -403,6 +348,6 @@
   </div>
 </footer>
 
-<script src="js/main.js?v=4"></script>
+<script src="js/main.js?v=5"></script>
 </body>
 </html>
