@@ -3,8 +3,7 @@
    а собирается в текст, который человек отправляет в Telegram сам. */
 
 const CONFIG = {
-  // Куда слать анкету POST-запросом с JSON (например, Formspree: https://formspree.io/f/XXXX).
-  // Пусто — демо-режим.
+  // Реле анкеты (POST JSON). Пусто — демо-режим.
   formEndpoint: '',
   // Куда ведут кнопки «Открыть Telegram» и ссылка в подвале.
   telegram: 'https://t.me/marchvlv',
@@ -17,18 +16,78 @@ const CONFIG = {
 (function () {
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+  const motion = document.documentElement.classList.contains('motion');
 
-  /* Ссылки на площадки из CONFIG. Пустые скрываем. */
-  $$('#footerLinks a').forEach((a) => {
+  /* ---------- Заголовок-афиша: каждая строка растягивается на всю ширину ---------- */
+  const slam = $('#slam');
+  function buildLines() {
+    if (!slam) return;
+    const mobile = slam.clientWidth < 620;
+    const src = mobile ? slam.dataset.linesMobile : slam.dataset.linesDesktop;
+    const key = mobile ? 'm' : 'd';
+    if (slam.dataset.built === key) return;
+    const yellowFrom = slam.dataset.yellowFrom;
+    let yellow = false;
+    slam.innerHTML = src.split('|').map((t) => {
+      if (t.startsWith(yellowFrom)) yellow = true;
+      return `<span class="ln${yellow ? ' ln--y' : ''}"><span class="w">${t}</span></span>`;
+    }).join('');
+    slam.dataset.built = key;
+  }
+  function fitLines() {
+    if (!slam) return;
+    buildLines();
+    const width = slam.clientWidth;
+    $$('.ln', slam).forEach((ln) => {
+      const w = $('.w', ln);
+      ln.style.fontSize = '100px';
+      const measured = w.getBoundingClientRect().width;
+      if (!measured) return;
+      const size = Math.min((width / measured) * 100, 260);
+      ln.style.fontSize = size.toFixed(2) + 'px';
+    });
+  }
+  if (slam) {
+    fitLines();
+    if (document.fonts) {
+      document.fonts.load('900 100px "Unbounded"').then(fitLines, fitLines);
+      document.fonts.addEventListener('loadingdone', fitLines);
+    }
+    let t;
+    window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(fitLines, 80); });
+  }
+
+  /* ---------- Бегущие ленты: дублируем дорожку для бесшовной петли ---------- */
+  $$('.track').forEach((track) => {
+    const span = $('span', track);
+    if (!span) return;
+    const n = parseInt(track.dataset.repeat || '6', 10);
+    const text = span.textContent;
+    span.textContent = text.repeat(n);
+    if (motion) track.appendChild(span.cloneNode(true));
+  });
+
+  /* ---------- Появление блоков при скролле ---------- */
+  if (motion && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+    $$('.rv').forEach((el) => io.observe(el));
+  } else {
+    $$('.rv').forEach((el) => el.classList.add('in'));
+  }
+
+  /* ---------- Ссылки на площадки из CONFIG. Пустые скрываем. ---------- */
+  $$('#footerLinks a[data-link]').forEach((a) => {
     const url = CONFIG[a.dataset.link];
     if (url) a.href = url; else a.remove();
   });
   const doneTg = $('#doneTg');
   if (doneTg) doneTg.href = CONFIG.telegram;
+  const year = $('#year');
+  if (year) year.textContent = String(new Date().getFullYear());
 
-  $('#year').textContent = String(new Date().getFullYear());
-
-  /* Источник заявки: utm-метки и реферер в скрытые поля, чтобы считать, откуда пришли. */
+  /* ---------- Анкета ---------- */
   const form = $('#applyForm');
   if (!form) return;
   const params = new URLSearchParams(location.search);
@@ -39,7 +98,6 @@ const CONFIG = {
   form.elements.referrer.value = document.referrer || '';
   form.elements.page.value = location.href.split('?')[0];
 
-  /* Яндекс.Метрика, только если задан номер. */
   if (CONFIG.metrikaId) {
     const s = document.createElement('script');
     s.src = 'https://mc.yandex.ru/metrika/tag.js';
@@ -52,19 +110,10 @@ const CONFIG = {
   const track = (goal) => { if (CONFIG.metrikaId && window.ym) window.ym(CONFIG.metrikaId, 'reachGoal', goal); };
 
   const labels = {
-    name: 'Кто',
-    scenario: 'Сценарий',
-    times: 'Сколько раз за год',
-    cost: 'Во что обходится',
-    tried: 'Что пробовал',
-    ready: 'Готовность к заданию',
-    telegram: 'Telegram',
-    utm_source: 'utm_source',
-    utm_medium: 'utm_medium',
-    utm_campaign: 'utm_campaign',
-    utm_content: 'utm_content',
-    referrer: 'Реферер',
-    page: 'Страница',
+    name: 'Кто', scenario: 'Сценарий', times: 'Сколько раз за год', cost: 'Во что обходится',
+    tried: 'Что пробовал', ready: 'Готовность к заданию', telegram: 'Telegram',
+    utm_source: 'utm_source', utm_medium: 'utm_medium', utm_campaign: 'utm_campaign', utm_content: 'utm_content',
+    referrer: 'Реферер', page: 'Страница',
   };
 
   function collect() {
@@ -72,14 +121,15 @@ const CONFIG = {
     new FormData(form).forEach((v, k) => { data[k] = String(v).trim(); });
     return data;
   }
-
   function toText(data) {
     const lines = ['Анкета ReShape'];
-    Object.keys(labels).forEach((k) => {
-      if (data[k]) lines.push(`${labels[k]}: ${data[k]}`);
-    });
+    Object.keys(labels).forEach((k) => { if (data[k]) lines.push(`${labels[k]}: ${data[k]}`); });
     return lines.join('\n');
   }
+
+  const errorEl = $('#formError');
+  const showError = (msg) => { errorEl.textContent = msg; errorEl.classList.add('is-visible'); };
+  const hideError = () => { errorEl.textContent = ''; errorEl.classList.remove('is-visible'); };
 
   function validate() {
     const bad = $$('[required]', form).find((el) => {
@@ -97,10 +147,6 @@ const CONFIG = {
     hideError();
     return true;
   }
-
-  const errorEl = $('#formError');
-  function showError(msg) { errorEl.textContent = msg; errorEl.classList.add('is-visible'); }
-  function hideError() { errorEl.textContent = ''; errorEl.classList.remove('is-visible'); }
 
   const block = $('#applyBlock');
   const done = $('#formDone');
@@ -127,13 +173,12 @@ const CONFIG = {
         if (!ok) {
           doneText.textContent = 'Скопируй текст ниже, открой Telegram и отправь его мне. Отвечу в течение суток.';
           const pre = document.createElement('pre');
-          pre.style.cssText = 'white-space:pre-wrap;font:inherit;margin-top:16px;padding:16px;background:#fff;border:1px solid #D6CEC2';
           pre.textContent = text;
           doneText.after(pre);
         }
       });
     }
-    done.scrollIntoView({ block: 'start', behavior: document.documentElement.classList.contains('motion') ? 'smooth' : 'auto' });
+    done.scrollIntoView({ block: 'start', behavior: motion ? 'smooth' : 'auto' });
   }
 
   form.addEventListener('submit', async (e) => {

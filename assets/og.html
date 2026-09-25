@@ -5,23 +5,22 @@
 <link rel="stylesheet" href="../fonts/fonts.css">
 <style>
   html,body{margin:0;width:1200px;height:630px;overflow:hidden}
-  body{background:#F6F3EE;color:#16130F;font-family:'Golos Text',system-ui,sans-serif;position:relative}
-  .bar{position:absolute;left:0;right:0;top:0;height:6px;background:#16130F}
-  .brand{position:absolute;left:72px;top:56px;display:flex;align-items:center;gap:16px;font-weight:800;font-size:30px;letter-spacing:-.02em}
-  .brand img{width:40px;height:40px}
-  .eyebrow{position:absolute;right:72px;top:62px;font-size:22px;color:#655E54}
-  h1{position:absolute;left:72px;top:170px;margin:0;font-size:104px;line-height:.94;letter-spacing:-.04em;font-weight:800}
-  h1 span{display:block}
-  h1 span:nth-child(2){margin-left:120px}
-  h1 span:nth-child(3){margin-left:40px;color:#1F3BE6}
-  .foot{position:absolute;left:72px;right:72px;bottom:52px;display:flex;justify-content:space-between;font-size:24px;color:#655E54;border-top:2px solid #16130F;padding-top:22px}
+  body{background:#000;color:#F2F2F2;font-family:'Unbounded',sans-serif;position:relative;text-transform:uppercase}
+  .brand{position:absolute;left:64px;top:52px;display:flex;align-items:center;gap:14px;font-weight:800;font-size:22px;letter-spacing:.04em}
+  .brand img{width:34px;height:34px}
+  .tags{position:absolute;right:64px;top:54px;display:flex;gap:10px;font-family:'JetBrains Mono',monospace;font-size:15px;letter-spacing:.1em}
+  .tags span{border:1.5px solid rgba(255,255,255,.4);border-radius:999px;padding:8px 14px}
+  .tags span.y{background:#FFE600;border-color:#FFE600;color:#000;font-weight:700}
+  h1{position:absolute;left:64px;top:150px;margin:0;font-weight:900;line-height:.95;letter-spacing:-.025em}
+  h1 span{display:block;white-space:nowrap}
+  .l1{font-size:118px}.l2{font-size:96px}.l3{font-size:78px}.l4{font-size:64px;color:#FFE600}
+  .tape{position:absolute;left:-60px;right:-60px;bottom:58px;transform:rotate(-2.5deg);background:#FFE600;color:#000;padding:14px 0;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:18px;letter-spacing:.16em;white-space:nowrap;overflow:hidden}
 </style>
 </head>
 <body>
-<div class="bar"></div>
 <div class="brand"><img src="img/mark.svg" alt=""><span>ReShape</span></div>
-<div class="eyebrow">Пилот, восемь мест</div>
-<h1><span>Ты снова принимаешь</span><span>новое решение</span><span>из старой точки.</span></h1>
-<div class="foot"><span>Разбор одного повторяющегося сценария</span><span>для предпринимателей и экспертов</span></div>
+<div class="tags"><span class="y">Пилот 001</span><span>8 мест</span><span>14 дней</span></div>
+<h1><span class="l1">Ты снова</span><span class="l2">принимаешь</span><span class="l3">новое решение</span><span class="l4">из старой точки.</span></h1>
+<div class="tape">Идёт пересборка ✕ ReShape ✕ Разбор одного сценария ✕ Пилот 001 ✕ 8 мест ✕ Идёт пересборка ✕ ReShape ✕ Разбор одного сценария ✕ Пилот 001 ✕ 8 мест ✕ Идёт пересборка ✕</div>
 </body>
 </html>
