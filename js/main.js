@@ -71,9 +71,46 @@ const CONFIG = {
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
     }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
-    $$('.rv').forEach((el) => io.observe(el));
+    $$('.rv, .focus').forEach((el) => io.observe(el));
   } else {
-    $$('.rv').forEach((el) => el.classList.add('in'));
+    $$('.rv, .focus').forEach((el) => el.classList.add('in'));
+  }
+
+  /* ---------- Калькулятор «во что обходится сценарий» ---------- */
+  const calcEl = $('#calc');
+  if (calcEl) {
+    const PRICE = 12000;
+    const tIn = $('#cTimes');
+    const cIn = $('#cCost');
+    const rub = (n) => `${n.toLocaleString('ru-RU')} ₽`;
+    const timesWord = (n) => {
+      const m10 = n % 10;
+      const m100 = n % 100;
+      if (m10 >= 2 && m10 <= 4 && (m100 < 12 || m100 > 14)) return `${n} раза`;
+      return `${n} раз`;
+    };
+    const note = $('#cNote');
+    const renderCalc = () => {
+      const n = Number(tIn.value);
+      const v = Number(cIn.value);
+      const year = n * v;
+      $('#cTimesOut').textContent = timesWord(n);
+      $('#cCostOut').textContent = rub(v);
+      $('#cYear').textContent = rub(year);
+      note.textContent = '';
+      if (year <= PRICE) {
+        note.textContent = 'Если сценарий обходится тебе дешевле разбора, разбор тебе не нужен. Серьёзно.';
+        return;
+      }
+      const pct = Math.max(1, Math.round((PRICE / year) * 100));
+      const hl = document.createElement('span');
+      hl.className = 'hl';
+      hl.textContent = `${pct}%`;
+      note.append(`Разбор стоит ${rub(PRICE)}. Это `, hl, ' одного года твоего сценария. Время и нервы не считаем.');
+    };
+    tIn.addEventListener('input', renderCalc);
+    cIn.addEventListener('input', renderCalc);
+    renderCalc();
   }
 
   /* ---------- Ссылки на площадки из CONFIG. Пустые скрываем. ---------- */

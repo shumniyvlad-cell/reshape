@@ -20,7 +20,7 @@
 <link rel="preload" href="fonts/plex-400-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/jbmono-700-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="fonts/fonts.css?v=4">
-<link rel="stylesheet" href="css/styles.css?v=5">
+<link rel="stylesheet" href="css/styles.css?v=6">
 <script>
 (function(){try{var p=new URLSearchParams(location.search);if(p.has('motion'))localStorage.setItem('reshape-motion',p.get('motion'));var f=localStorage.getItem('reshape-motion');var r=f==='1'?false:f==='0'?true:matchMedia('(prefers-reduced-motion: reduce)').matches;document.documentElement.className+=r?' no-motion':' motion';}catch(e){document.documentElement.className+=' motion'}})();
 </script>
@@ -79,35 +79,73 @@
   <div class="tape__band"><div class="track" data-repeat="8"><span>Идёт пересборка ✕ ReShape ✕ Пилот 001 ✕ 8 мест ✕ </span></div></div>
 </div>
 
-<section class="sec sec--light" id="situations">
+<section class="sec sec--light sec--intro" id="situations">
   <div class="wrap">
     <div class="sec__head">
       <p class="kicker">Четыре сценария</p>
       <h2 class="slam rv" data-fit="150"><span class="ln"><span class="w">Знакомо?</span></span></h2>
-      <p class="sub">Если один из них твой, ты знаешь этот момент наизусть.</p>
+      <p class="sub">Если один из них твой, ты узнаешь его с первой строки.</p>
     </div>
-    <div class="sit">
-      <article class="sit__card rv">
-        <div class="sit__stamp">Лишнее</div>
-        <p class="sit__q">Закрыл проект и тут же взял ещё два.</p>
-      </article>
-      <article class="sit__card rv">
-        <div class="sit__stamp">Своё</div>
-        <p class="sit__q">Свой продукт третий год лежит в заметках.</p>
-      </article>
-      <article class="sit__card rv">
-        <div class="sit__stamp">Руль</div>
-        <p class="sit__q">Нанял человека. Через две недели снова всё сам.</p>
-      </article>
-      <article class="sit__card rv">
-        <div class="sit__stamp">Курс</div>
-        <p class="sit__q">Каждые полгода новое направление.</p>
-      </article>
+  </div>
+</section>
+
+<section class="poster poster--blue" aria-label="Сценарий «Лишнее»">
+  <div class="poster__in">
+    <p class="poster__tag">Лишнее</p>
+    <div class="poster__line focus">
+      <p>ты не умеешь отказывать.</p>
+      <p>— поэтому всё время отказываешь себе.</p>
     </div>
-    <div class="sit__after">
-      <p>Решение каждый раз новое. Результат старый.</p>
-      <h3 class="slam rv" data-fit="120" data-lines-desktop="ДЕЛО НЕ В РЕШЕНИИ." data-lines-mobile="ДЕЛО НЕ|В РЕШЕНИИ."><span class="ln"><span class="w">Дело не в решении.</span></span></h3>
+    <p class="poster__cap">«Закрыл проект и тут же взял ещё два»</p>
+  </div>
+</section>
+
+<section class="poster poster--green" aria-label="Сценарий «Своё»">
+  <div class="poster__in">
+    <p class="poster__tag">Своё</p>
+    <div class="poster__line focus">
+      <p>ты не откладываешь продукт.</p>
+      <p>ты откладываешь момент, когда его оценят.</p>
     </div>
+    <p class="poster__cap">«Свой продукт третий год лежит в заметках»</p>
+  </div>
+</section>
+
+<section class="poster poster--red" aria-label="Сценарий «Руль»">
+  <div class="poster__in">
+    <p class="poster__tag">Руль</p>
+    <div class="poster__line poster__dialog focus">
+      <p>— Зачем ты снова всё делаешь сам?</p>
+      <p class="r">— Так быстрее.</p>
+      <p>— Третий год?</p>
+    </div>
+    <p class="poster__cap">«Нанял человека. Через две недели снова всё сам»</p>
+  </div>
+</section>
+
+<section class="poster poster--paper" aria-label="Сценарий «Курс»">
+  <div class="poster__in">
+    <p class="poster__tag">Курс</p>
+    <div class="poster__line focus">
+      <p>новая идея приходит ровно тогда, когда старую пора доделывать.</p>
+    </div>
+    <p class="poster__cap">«Каждые полгода новое направление»</p>
+  </div>
+</section>
+
+<section class="sec" id="why">
+  <div class="wrap">
+    <div class="sec__head">
+      <p class="kicker">Решение каждый раз новое. Результат старый.</p>
+      <h2 class="slam rv" data-fit="150" data-lines-desktop="ДЕЛО НЕ В РЕШЕНИИ." data-lines-mobile="ДЕЛО НЕ|В РЕШЕНИИ."><span class="ln"><span class="w">Дело не в решении.</span></span></h2>
+      <p class="sub">Почему не сработало то, что ты уже пробовал.</p>
+    </div>
+    <ul class="formulas">
+      <li class="formula rv"><span>Инсайт</span><i>+</i><span>мотивация</span><i>−</i><span class="minus">действие</span><i>=</i><b>«я всё про себя знаю»</b></li>
+      <li class="formula rv"><span>Решение</span><i>+</i><span>усилие</span><i>−</i><span class="minus">новая точка</span><i>=</i><b>тот же сценарий</b></li>
+      <li class="formula formula--yes rv"><span>Новая точка</span><i>+</i><span>одно действие</span><i>+</i><span>проверка</span><i>=</i><b>другой результат</b></li>
+    </ul>
+    <p class="formulas__note">Третья строка и есть разбор</p>
   </div>
 </section>
 
@@ -155,6 +193,18 @@
         </div>
       </li>
     </ol>
+  </div>
+</section>
+
+<section class="poster poster--yellow" aria-label="Разрешение">
+  <div class="poster__in">
+    <p class="poster__tag">Эксперимент, 14 дней</p>
+    <div class="poster__line focus">
+      <p>две недели делать по‑другому.</p>
+      <p>криво. неуверенно. с откатами.</p>
+      <p>— этого достаточно.</p>
+    </div>
+    <p class="poster__cap">Идеально не нужно. Нужно иначе, чем обычно.</p>
   </div>
 </section>
 
@@ -230,6 +280,25 @@
       <p class="kicker">Условия пилота</p>
       <h2 class="slam rv" data-fit="150" data-lines-desktop="ВОСЕМЬ МЕСТ" data-lines-mobile="ВОСЕМЬ|МЕСТ"><span class="ln"><span class="w">Восемь мест</span></span></h2>
       <p class="sub">По цене пилота. Потом дороже.</p>
+    </div>
+    <div class="calc" id="calc">
+      <h3 class="calc__title">Сначала посчитай, во что тебе обходится сценарий</h3>
+      <div class="calc__row">
+        <label for="cTimes">Сколько раз за год он случается</label>
+        <output id="cTimesOut" for="cTimes">3 раза</output>
+        <input type="range" id="cTimes" min="1" max="12" step="1" value="3">
+      </div>
+      <div class="calc__row">
+        <label for="cCost">Во что обходится один раз</label>
+        <output id="cCostOut" for="cCost">40 000 ₽</output>
+        <input type="range" id="cCost" min="5000" max="500000" step="5000" value="40000">
+        <p class="calc__hint">Сорванный срок, задача, которую снова сделал сам, отложенный запуск, клиент, которого не взял.</p>
+      </div>
+      <div class="calc__res" aria-live="polite">
+        <p>Год этого сценария</p>
+        <strong id="cYear">120 000 ₽</strong>
+        <p id="cNote">Разбор стоит 12 000 ₽. Это 10% одного года твоего сценария. Время и нервы не считаем.</p>
+      </div>
     </div>
     <div class="price">
       <div>
@@ -350,6 +419,6 @@
   </div>
 </footer>
 
-<script src="js/main.js?v=9"></script>
+<script src="js/main.js?v=10"></script>
 </body>
 </html>
