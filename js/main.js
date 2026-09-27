@@ -7,7 +7,7 @@ const CONFIG = {
   formEndpoint: '',
   // Временный прямой режим без реле: сайт сам шлёт анкету через Bot API.
   // Токен виден в исходнике страницы, поэтому только на время, пока реле не встало.
-  telegramBot: { token: '8717084919:AAHnwcqgO3PRsyHZfO5bm7646Jv89VJhNgg', chatId: '7017655811' },
+  telegramBot: { token: '', chatId: '' },
   // Куда ведут кнопки «Открыть Telegram» и ссылка в подвале.
   telegram: 'https://t.me/marchvlv',
   instagram: '',
