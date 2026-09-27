@@ -5,7 +5,7 @@
 const CONFIG = {
   // Реле анкеты на сервере Before: POST JSON, токен бота живёт только в .env на сервере.
   // Пусто — демо-режим (анкета копируется, человек шлёт её сам).
-  formEndpoint: 'https://app.getbefore.ru/reshape/lead',
+  formEndpoint: /(^|\.)reshapeme\.ru$/.test(location.hostname) ? '/api/lead' : 'https://app.getbefore.ru/reshape/lead',
   // Куда ведут кнопки «Открыть Telegram» и ссылка в подвале.
   telegram: 'https://t.me/marchvlv',
   instagram: '',
