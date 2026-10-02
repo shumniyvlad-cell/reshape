@@ -3,9 +3,9 @@
    а собирается в текст, который человек отправляет в Telegram сам. */
 
 const CONFIG = {
-  // Реле анкеты на сервере Before: POST JSON, токен бота живёт только в .env на сервере.
+  // Реле анкеты на сервере ReShape (Aeza): POST JSON, токен бота живёт только в .env на сервере.
   // Пусто — демо-режим (анкета копируется, человек шлёт её сам).
-  formEndpoint: /(^|\.)reshapeme\.ru$/.test(location.hostname) ? '/api/lead' : 'https://app.getbefore.ru/reshape/lead',
+  formEndpoint: /(^|\.)reshapeme\.ru$|\.sslip\.io$/.test(location.hostname) ? '/api/lead' : 'https://reshapeme.ru/api/lead',
   // Куда ведут кнопки «Открыть Telegram» и ссылка в подвале.
   telegram: 'https://t.me/marchvlv',
   instagram: '',
