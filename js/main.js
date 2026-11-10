@@ -7,7 +7,7 @@ const CONFIG = {
   // Пусто — демо-режим (анкета копируется, человек шлёт её сам).
   formEndpoint: /(^|\.)reshapeme\.ru$|\.sslip\.io$/.test(location.hostname) ? '/api/lead' : 'https://reshapeme.ru/api/lead',
   // Куда ведут кнопки «Открыть Telegram» и ссылка в подвале.
-  telegram: 'https://t.me/marchvlv',
+  telegram: 'https://t.me/marchvlvv',
   instagram: '',
   youtube: '',
   // Номер счётчика Яндекс.Метрики. Пусто — счётчик не грузится.
